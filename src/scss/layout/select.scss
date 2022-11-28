@@ -1,0 +1,26 @@
+@use 'base/variables' as v;
+
+.tips {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10rem;
+
+	button {
+		width: 100rem;
+		height: 30rem;
+		border-radius: 3rem;
+		border: none;
+		background-color: v.$cian-mo;
+		color: v.$cian-gmc;
+		cursor: pointer;
+
+		&:hover {
+			background-color: v.$cian-f;
+			color: v.$cian-mo;
+		}
+	}
+
+	input {
+		width: 80rem;
+	}
+}

@@ -1,0 +1,88 @@
+@use 'variables' as v;
+
+html {
+	font-size: 6.25%; /*  1rem = 1px */
+	box-sizing: border-box; /*box mnodel*/
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit; /*box mnodel*/
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+}
+
+body {
+	font-size: 16rem;
+	font-family: v.$fuente_principal;
+	height: 100vh;
+	background-color: v.$cian-gc;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+h1,
+h2,
+h3 {
+	color: v.$negro;
+}
+
+h1 {
+	font-size: 40rem;
+}
+
+h2 {
+	font-size: 36rem;
+}
+
+h3 {
+	font-size: 22rem;
+}
+
+p {
+	font-size: 16rem;
+}
+
+img {
+	//width: 100%;
+	height: auto;
+	display: block;
+}
+
+input {
+	border: none;
+	color: v.$cian-mo;
+}
+
+label {
+	display: block;
+	margin-bottom: 10rem;
+	color: v.$cian-go;
+}
+
+.container {
+	width: min(95%, 1200rem);
+	margin: 0 auto;
+
+	h1 {
+		color: v.$cian-mo;
+		text-align: center;
+		text-transform: uppercase;
+		letter-spacing: 10rem;
+	}
+}
+
+.App {
+	background-color: v.$blanco;
+	padding: 20rem;
+	border-radius: 10rem;
+}
+
+.div1 {
+	width: 200rem;
+}

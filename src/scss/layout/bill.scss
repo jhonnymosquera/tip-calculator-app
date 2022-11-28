@@ -1,0 +1,27 @@
+@use 'base/variables' as v;
+
+.bill_input {
+	position: relative;
+	display: flex;
+	align-items: center;
+
+	img {
+		position: absolute;
+		left: 10rem;
+	}
+
+	input {
+		width: 100%;
+		padding: 10rem;
+		text-align: right;
+		border: none;
+		background-color: v.$cian-gmc;
+		border-radius: 5rem;
+
+		&[type]:focus {
+			border-color: v.$cian-f;
+			box-shadow: 0 0px 0px v.$cian-f inset, 0 0 6px v.$cian-f;
+			outline: 0 none;
+		}
+	}
+}
