@@ -1,0 +1,38 @@
+@use 'base/variables' as v;
+
+.result {
+	background-color: v.$cian-mo;
+	padding: 20rem;
+	border-radius: 10rem;
+}
+
+.tip_amount,
+.total {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20rem;
+
+	&_description p {
+		color: v.$cian-gmc;
+
+		&:last-child {
+			color: v.$cian-g;
+		}
+	}
+
+	&_result p {
+		color: v.$cian-f;
+		font-size: 25rem;
+	}
+}
+
+.reset {
+	width: 100%;
+	border: none;
+	padding: 10rem;
+	border-radius: 5rem;
+	background-color: v.$cian-f;
+	color: v.$cian-mo;
+	text-transform: uppercase;
+}

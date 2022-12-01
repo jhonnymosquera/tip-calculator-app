@@ -9,7 +9,7 @@ export default function Bill() {
 
 			<div className="bill_input">
 				<img src={iconDollar} alt="icon dolar" />
-				<input type="number" min={0} />
+				<input type="number" min={0} value={0} />
 			</div>
 		</div>
 	);

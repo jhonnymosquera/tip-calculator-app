@@ -1,0 +1,39 @@
+@use 'base/variables' as v;
+
+.select_tip {
+	margin-bottom: 30rem;
+}
+
+.tips {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10rem;
+
+	.tip {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 40rem;
+		border-radius: 3rem;
+		background-color: v.$cian-mo;
+		color: v.$cian-gmc;
+		cursor: pointer;
+		font-size: 20rem;
+
+		&:hover {
+			background-color: v.$cian-f;
+			color: v.$cian-mo;
+		}
+	}
+
+	input {
+		width: 100%;
+		text-align: right;
+		padding: 0 20rem;
+		color: v.$cian-mo;
+	}
+
+	input[type]::placeholder {
+		color: v.$cian-mo;
+	}
+}

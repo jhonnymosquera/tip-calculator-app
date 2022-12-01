@@ -20,10 +20,8 @@ body {
 	font-family: v.$fuente_principal;
 	height: 100vh;
 	background-color: v.$cian-gc;
-
-	display: flex;
+	display: grid;
 	align-items: center;
-	justify-content: center;
 }
 
 h1,
@@ -65,24 +63,11 @@ label {
 	color: v.$cian-go;
 }
 
-.container {
-	width: min(95%, 1200rem);
-	margin: 0 auto;
-
-	h1 {
-		color: v.$cian-mo;
-		text-align: center;
-		text-transform: uppercase;
-		letter-spacing: 10rem;
-	}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }
-
-.App {
-	background-color: v.$blanco;
-	padding: 20rem;
-	border-radius: 10rem;
-}
-
-.div1 {
-	width: 200rem;
+input[type='number'] {
+	-moz-appearance: textfield;
 }

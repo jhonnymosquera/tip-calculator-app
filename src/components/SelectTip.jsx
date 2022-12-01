@@ -7,9 +7,9 @@ export default function SelectTip() {
 
 			<div className="tips">
 				{tips.map((tip) => {
-					return <button>{tip}%</button>;
+					return <div className="tip">{tip}%</div>;
 				})}
-				<input type="number" min={0} value={0} />
+				<input type="number" placeholder="Custom" min={0} />
 			</div>
 		</div>
 	);
