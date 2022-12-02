@@ -1,7 +1,7 @@
 import useContexApp from '../Context/useContextApp';
 
 export default function Result() {
-	const { iconDollar } = useContexApp();
+	const { iconDollar, reset } = useContexApp();
 
 	return (
 		<div className="result">
@@ -27,7 +27,14 @@ export default function Result() {
 				</div>
 			</div>
 
-			<button className="reset">Reset</button>
+			<button
+				className="reset"
+				onClick={() => {
+					reset();
+				}}
+			>
+				Reset
+			</button>
 		</div>
 	);
 }

@@ -1,7 +1,7 @@
 import useContexApp from '../Context/useContextApp';
 
 export default function Bill() {
-	const { iconDollar } = useContexApp();
+	const { iconDollar, value, handlerInputValue } = useContexApp();
 
 	return (
 		<div className="bill">
@@ -9,7 +9,14 @@ export default function Bill() {
 
 			<div className="bill_input">
 				<img src={iconDollar} alt="icon dolar" />
-				<input type="number" min={0} value={0} />
+				<input
+					type="number"
+					placeholder="0"
+					min={0}
+					value={value.bill}
+					name="bill"
+					onChange={handlerInputValue}
+				/>
 			</div>
 		</div>
 	);

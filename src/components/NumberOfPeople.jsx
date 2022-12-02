@@ -1,7 +1,7 @@
 import useContexApp from '../Context/useContextApp';
 
 export default function NumberOfPeople() {
-	const { iconPerson } = useContexApp();
+	const { iconPerson, handlerInputValue, value } = useContexApp();
 
 	return (
 		<div className="number_of_people">
@@ -9,7 +9,14 @@ export default function NumberOfPeople() {
 
 			<div className="people">
 				<img src={iconPerson} alt="icon dolar" />
-				<input type="number" min={0} value={0} />
+				<input
+					type="number"
+					placeholder="0"
+					name="numberOfPeople"
+					min={0}
+					value={value.numberOfPeople}
+					onChange={handlerInputValue}
+				/>
 			</div>
 		</div>
 	);

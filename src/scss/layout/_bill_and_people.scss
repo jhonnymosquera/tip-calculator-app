@@ -25,5 +25,9 @@
 			box-shadow: 0 0px 0px v.$cian-f inset, 0 0 6px v.$cian-f;
 			outline: 0 none;
 		}
+
+		&[type]::placeholder {
+			color: v.$cian-mo;
+		}
 	}
 }
