@@ -1,13 +1,18 @@
 import useContexApp from '../Context/useContextApp';
 
 export default function NumberOfPeople() {
-	const { iconPerson, handlerInputValue, value } = useContexApp();
+	const { iconPerson, handlerInputValue, value, errorRefSpan, errorRefInput } = useContexApp();
 
 	return (
 		<div className="number_of_people">
-			<label>Number of People</label>
+			<div className="detail">
+				<label>Number of People</label>
+				<span ref={errorRefSpan} className="error">
+					Cant't be zero
+				</span>
+			</div>
 
-			<div className="people">
+			<div ref={errorRefInput} className="people">
 				<img src={iconPerson} alt="icon dolar" />
 				<input
 					type="number"

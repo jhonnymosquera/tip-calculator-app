@@ -19,14 +19,14 @@ function ContextProvider({ children }) {
 		const parseValue = eName === 'bill' ? parseFloat(eValue) : parseInt(eValue);
 
 		if (e.target.value.length > 0) {
-			let handler = {
+			const handler = {
 				...value,
 				[eName]: parseValue,
 			};
 
 			setValue(handler);
 		} else {
-			let handler = {
+			const handler = {
 				...value,
 				[eName]: '',
 			};
@@ -36,13 +36,24 @@ function ContextProvider({ children }) {
 	};
 
 	const handerCustom = (e) => {
-		let handler = {
-			...value,
-			selecTip: '',
-			selecTipCustom: parseInt(e.target.value),
-		};
+		if (e.target.value.length > 0) {
+			const handler = {
+				...value,
+				selecTip: '',
+				selecTipCustom: parseInt(e.target.value),
+			};
 
-		setValue(handler);
+			setValue(handler);
+		} else {
+			const handler = {
+				...value,
+				selecTip: '',
+				selecTipCustom: '',
+			};
+
+			setValue(handler);
+		}
+
 		removeActive();
 	};
 
@@ -50,7 +61,7 @@ function ContextProvider({ children }) {
 		let str = e.target.innerText;
 		str = str.substr(0, str.length - 1);
 
-		let handler = {
+		const handler = {
 			...value,
 			selecTip: parseInt(str),
 			selecTipCustom: '',
@@ -80,9 +91,12 @@ function ContextProvider({ children }) {
 			if (tip == Infinity || NaN) {
 				setTipAmountResult(null);
 			} else {
-				console.log(tip);
 				setTipAmountResult(tipAmount);
 			}
+		}
+
+		if (numberOfPeople == '') {
+			setTipAmountResult(null);
 		}
 	};
 
@@ -118,10 +132,27 @@ function ContextProvider({ children }) {
 		e.target.classList.add(active);
 	};
 
+	// error
+
+	const errorRefSpan = useRef();
+	const errorRefInput = useRef();
+
+	function error(error) {
+		let classList = error.current.classList;
+
+		if (bill > 0 && (selecTip || selecTipCustom) > 0 && numberOfPeople < 1) {
+			classList.add('errorActive');
+		} else {
+			classList.remove('errorActive');
+		}
+	}
+
 	// useEffect
 
 	useEffect(() => {
 		setValue(value);
+		error(errorRefSpan);
+		error(errorRefInput);
 
 		if (bill != '') {
 			tipAmoutPerson();
@@ -145,6 +176,8 @@ function ContextProvider({ children }) {
 				tipTarget,
 				tipAmountResult,
 				totalPersonResult,
+				errorRefSpan,
+				errorRefInput,
 			}}
 		>
 			{children}
