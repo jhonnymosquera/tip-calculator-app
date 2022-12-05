@@ -122,6 +122,7 @@ function ContextProvider({ children }) {
 
 	useEffect(() => {
 		setValue(value);
+
 		if (bill != '') {
 			tipAmoutPerson();
 			totalPersonAmout();
