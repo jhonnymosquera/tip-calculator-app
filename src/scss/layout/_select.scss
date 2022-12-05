@@ -1,4 +1,5 @@
 @use 'base/variables' as v;
+@use 'base/mixins' as m;
 
 .select_tip {
 	margin-bottom: 30rem;
@@ -26,14 +27,33 @@
 		}
 	}
 
+	.tip_active {
+		background-color: v.$cian-f;
+		color: v.$cian-mo;
+	}
+
 	input {
 		width: 100%;
 		text-align: right;
 		padding: 0 20rem;
 		color: v.$cian-mo;
-	}
+		caret-color: v.$cian-f;
+		cursor: pointer;
 
-	input[type]::placeholder {
-		color: v.$cian-mo;
+		&[type]::placeholder {
+			color: v.$cian-mo;
+		}
+
+		&[type]:focus {
+			border-color: v.$cian-f;
+			box-shadow: 0 0px 0px v.$cian-f inset, 0 0 6px v.$cian-f;
+			outline: 0 none;
+		}
+	}
+}
+
+@include m.movil {
+	.tips {
+		grid-template-columns: repeat(3, 1fr);
 	}
 }

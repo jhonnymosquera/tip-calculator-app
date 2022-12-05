@@ -19,6 +19,7 @@
 		border: none;
 		background-color: v.$cian-gmc;
 		border-radius: 5rem;
+		cursor: pointer;
 
 		&[type]:focus {
 			border-color: v.$cian-f;

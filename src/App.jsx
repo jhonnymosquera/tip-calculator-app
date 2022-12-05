@@ -10,10 +10,13 @@ function App() {
 			<h1>Spli Tter</h1>
 
 			<div className="App">
-				<div className="div1">
+				<div className="split_tter">
 					<Bill />
 					<SelectTip />
 					<NumberOfPeople />
+				</div>
+
+				<div className="split_tter_result">
 					<Result />
 				</div>
 			</div>
