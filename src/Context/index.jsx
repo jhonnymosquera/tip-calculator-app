@@ -1,6 +1,8 @@
 import { Context } from './Context';
-import iconDollar from '../../public/icon-dollar.svg';
-import iconPerson from '../../public/icon-person.svg';
+import iconDollar from '../assets/icons/icon-dollar.svg';
+import iconPerson from '../assets/icons/icon-person.svg';
+import logo from '../assets/icons/logo.svg';
+
 import { useState, useEffect, useRef } from 'react';
 
 function ContextProvider({ children }) {
@@ -167,6 +169,7 @@ function ContextProvider({ children }) {
 			value={{
 				iconDollar,
 				iconPerson,
+				logo,
 				value,
 				handlerInputValue,
 				handlerbuttonValue,

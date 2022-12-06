@@ -5,13 +5,12 @@
 	width: min(100%, 1200rem);
 	margin: 0 auto;
 
-	h1 {
-		width: 130rem;
-		color: v.$cian-mo;
-		text-transform: uppercase;
-		letter-spacing: 10rem;
-		margin: 0 auto;
+	.title {
 		margin-bottom: 20rem;
+
+		img {
+			margin: 0 auto;
+		}
 	}
 }
 
@@ -24,7 +23,7 @@
 	justify-content: center;
 }
 
-@include m.movil {
+@include m.tablet {
 	.container {
 		width: 768rem;
 	}
