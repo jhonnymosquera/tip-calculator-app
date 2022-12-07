@@ -1,7 +1,5 @@
 import useContexApp from '../Context/useContextApp';
 
-const tips = [5, 10, 15, 25, 50];
-
 export default function SelectTip() {
 	const { value, valueDispatch, VALUE_TYPES, error, errorDispatch, ERROR_TYPES } = useContexApp();
 
@@ -15,7 +13,7 @@ export default function SelectTip() {
 			</div>
 
 			<div className="tips" ref={error.tipsRef}>
-				{tips.map((tip, i) => {
+				{error.tips.map((tip, i) => {
 					return (
 						<div
 							key={i}

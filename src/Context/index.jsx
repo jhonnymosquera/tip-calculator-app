@@ -18,6 +18,7 @@ function ContextProvider({ children }) {
 		errorNumberOfPeople: useRef(),
 		errorNumberOfPeopleSpan: useRef(),
 		tipsRef: useRef(),
+		tips: [5, 10, 15, 25, 50],
 	};
 	const [error, errorDispatch] = useReducer(errorReducer, errorRefs);
 	const [value, valueDispatch] = useReducer(valueReducer, initialValues);
