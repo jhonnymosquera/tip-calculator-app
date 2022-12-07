@@ -30,7 +30,7 @@ Los usuarios deben ser capaces de:
 
 ### Enlaces
 
-- URL de la solución: [calculadora de propinas](https://tip-calculator-jjmm.netlify.app/)
+- URL de la solución: [@jhonnymosquera](https://www.frontendmentor.io/solutions/tip-calculator-app-uYdSXW2UF6)
 - URL del sitio en vivo: [calculadora de propinas](https://tip-calculator-jjmm.netlify.app/)
 
 ## Mi proceso
