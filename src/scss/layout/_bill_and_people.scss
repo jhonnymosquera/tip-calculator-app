@@ -38,22 +38,3 @@
 	display: flex;
 	justify-content: space-between;
 }
-
-.error {
-	color: v.$error;
-	visibility: hidden;
-}
-
-.errorActive {
-	visibility: inherit;
-
-	input {
-		border: 2px solid v.$error;
-
-		&[type]:focus {
-			border-color: v.$error;
-			box-shadow: 0 0px 0px v.$error inset, 0 0 6px v.$error;
-			outline: 0 none;
-		}
-	}
-}

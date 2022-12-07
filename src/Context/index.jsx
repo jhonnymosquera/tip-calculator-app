@@ -3,162 +3,47 @@ import iconDollar from '../assets/icons/icon-dollar.svg';
 import iconPerson from '../assets/icons/icon-person.svg';
 import logo from '../assets/icons/logo.svg';
 
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useReducer } from 'react';
+import { VALUE_TYPES, ERROR_TYPES, RESULT_TYPES } from '../reducers/actions';
+import { initialValues, valueReducer } from '../reducers/valueReducer';
+import { initialResult, resultReducer } from '../reducers/resultReducer';
+import { errorReducer } from '../reducers/errorReducer';
 
 function ContextProvider({ children }) {
-	const initialValues = {
-		bill: '',
-		selecTip: '',
-		selecTipCustom: '',
-		numberOfPeople: '',
+	// reducers
+	const errorRefs = {
+		errorBill: useRef(),
+		errorBillSpan: useRef(),
+		errorSelectSpan: useRef(),
+		errorNumberOfPeople: useRef(),
+		errorNumberOfPeopleSpan: useRef(),
+		tipsRef: useRef(),
+		tips: [5, 10, 15, 25, 50],
 	};
+	const [error, errorDispatch] = useReducer(errorReducer, errorRefs);
+	const [value, valueDispatch] = useReducer(valueReducer, initialValues);
+	const [result, resultDispatch] = useReducer(resultReducer, initialResult);
 
-	const [value, setValue] = useState(initialValues);
-
-	const handlerInputValue = (e) => {
-		const eName = e.target.name;
-		const eValue = e.target.value;
-		const parseValue = eName === 'bill' ? parseFloat(eValue) : parseInt(eValue);
-
-		if (e.target.value.length > 0) {
-			const handler = {
-				...value,
-				[eName]: parseValue,
-			};
-
-			setValue(handler);
-		} else {
-			const handler = {
-				...value,
-				[eName]: '',
-			};
-
-			setValue(handler);
-		}
-	};
-
-	const handerCustom = (e) => {
-		if (e.target.value.length > 0) {
-			const handler = {
-				...value,
-				selecTip: '',
-				selecTipCustom: parseInt(e.target.value),
-			};
-
-			setValue(handler);
-		} else {
-			const handler = {
-				...value,
-				selecTip: '',
-				selecTipCustom: '',
-			};
-
-			setValue(handler);
-		}
-
-		removeActive();
-	};
-
-	const handlerbuttonValue = (e) => {
-		let str = e.target.innerText;
-		str = str.substr(0, str.length - 1);
-
-		const handler = {
-			...value,
-			selecTip: parseInt(str),
-			selecTipCustom: '',
-		};
-
-		setValue(handler);
-	};
-
+	// reset
 	const reset = () => {
-		setValue(initialValues);
-		removeActive();
+		valueDispatch({ type: VALUE_TYPES.RESET });
+		errorDispatch({ type: ERROR_TYPES.TIPS_REMOVE });
 		reusltReset();
 	};
 
-	// result
-	const { bill, selecTip, selecTipCustom, numberOfPeople } = value;
-	const [tipAmountResult, setTipAmountResult] = useState(null);
-	const [totalPersonResult, setTotalPersonResult] = useState(null);
-
-	let selec = selecTip != '' ? selecTip : selecTipCustom;
-	const amount = bill * (selec / 100);
-
-	const tipAmoutPerson = () => {
-		if (numberOfPeople != '') {
-			const tip = amount / numberOfPeople;
-			const tipAmount = parseFloat(tip).toFixed(2);
-			if (tip == Infinity || NaN) {
-				setTipAmountResult(null);
-			} else {
-				setTipAmountResult(tipAmount);
-			}
-		}
-
-		if (numberOfPeople == '') {
-			setTipAmountResult(null);
-		}
-	};
-
-	const totalPersonAmout = () => {
-		const total = (amount + bill) / numberOfPeople;
-		const totalPerson = parseFloat(total).toFixed(2);
-		if (total == Infinity || NaN) {
-			setTotalPersonResult(null);
-		} else {
-			setTotalPersonResult(totalPerson);
-		}
-	};
-
 	const reusltReset = () => {
-		setTipAmountResult(null);
-		setTotalPersonResult(null);
+		resultDispatch({ type: RESULT_TYPES.RESET });
 	};
-
-	// selec tip active
-
-	const tipsRef = useRef();
-	const active = 'tip_active';
-	const removeActive = () => {
-		const tips = tipsRef.current.childNodes;
-		tips.forEach((tip) => {
-			tip.classList.remove(active);
-		});
-	};
-
-	const tipTarget = (e) => {
-		removeActive();
-
-		e.target.classList.add(active);
-	};
-
-	// error
-
-	const errorRefSpan = useRef();
-	const errorRefInput = useRef();
-
-	function error(error) {
-		let classList = error.current.classList;
-
-		if (bill > 0 && (selecTip || selecTipCustom) > 0 && numberOfPeople < 1) {
-			classList.add('errorActive');
-		} else {
-			classList.remove('errorActive');
-		}
-	}
 
 	// useEffect
 
 	useEffect(() => {
-		setValue(value);
-		error(errorRefSpan);
-		error(errorRefInput);
+		valueDispatch({ type: VALUE_TYPES.VALUE });
+		resultDispatch({ value });
+		errorDispatch({ type: ERROR_TYPES.ERROR, value });
 
-		if (bill != '') {
-			tipAmoutPerson();
-			totalPersonAmout();
+		if (value.bill != '') {
+			resultDispatch({ type: RESULT_TYPES.TA, value });
 		} else {
 			reusltReset();
 		}
@@ -167,20 +52,17 @@ function ContextProvider({ children }) {
 	return (
 		<Context.Provider
 			value={{
+				logo,
 				iconDollar,
 				iconPerson,
-				logo,
 				value,
-				handlerInputValue,
-				handlerbuttonValue,
-				handerCustom,
+				valueDispatch,
+				VALUE_TYPES,
+				error,
+				errorDispatch,
+				ERROR_TYPES,
 				reset,
-				tipsRef,
-				tipTarget,
-				tipAmountResult,
-				totalPersonResult,
-				errorRefSpan,
-				errorRefInput,
+				result,
 			}}
 		>
 			{children}

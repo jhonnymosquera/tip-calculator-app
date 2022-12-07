@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
 import useContexApp from '../Context/useContextApp';
 
 export default function Result() {
-	const { reset, tipAmountResult, totalPersonResult } = useContexApp();
+	const { reset, result } = useContexApp();
+	const { tipAmount, totalPerson } = result;
 
 	return (
 		<div className="result">
@@ -14,7 +14,7 @@ export default function Result() {
 					</div>
 
 					<div className="tip_amount_result">
-						<p>${tipAmountResult ? tipAmountResult : '0.00'}</p>
+						<p>${tipAmount ? tipAmount : '0.00'}</p>
 					</div>
 				</div>
 
@@ -25,7 +25,7 @@ export default function Result() {
 					</div>
 
 					<div className="total_result">
-						<p>${totalPersonResult ? totalPersonResult : '0.00'}</p>
+						<p>${totalPerson ? totalPerson : '0.00'}</p>
 					</div>
 				</div>
 			</div>
