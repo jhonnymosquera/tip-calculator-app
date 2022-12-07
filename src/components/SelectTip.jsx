@@ -3,21 +3,32 @@ import useContexApp from '../Context/useContextApp';
 const tips = [5, 10, 15, 25, 50];
 
 export default function SelectTip() {
-	const { handerCustom, handlerbuttonValue, value, tipsRef, tipTarget } = useContexApp();
+	const { value, valueDispatch, VALUE_TYPES, error, errorDispatch, ERROR_TYPES } = useContexApp();
 
 	return (
 		<div className="select_tip">
-			<label>Select Tip %</label>
+			<div className="detail">
+				<label>Select Tip %</label>
+				<span ref={error.errorSelectSpan} className="error">
+					Cant't be zero
+				</span>
+			</div>
 
-			<div className="tips" ref={tipsRef}>
+			<div className="tips" ref={error.tipsRef}>
 				{tips.map((tip, i) => {
 					return (
 						<div
 							key={i}
 							className="tip"
 							onClick={(e) => {
-								tipTarget(e);
-								handlerbuttonValue(e);
+								errorDispatch({
+									type: ERROR_TYPES.TIP_TARGET,
+									e,
+								});
+								valueDispatch({
+									type: VALUE_TYPES.ST,
+									payload: e,
+								});
 							}}
 						>
 							{tip}%
@@ -31,7 +42,13 @@ export default function SelectTip() {
 					name="selecTipCustom"
 					min={0}
 					value={value.selecTipCustom}
-					onChange={handerCustom}
+					onChange={(e) => {
+						errorDispatch({ type: ERROR_TYPES.TIPS_REMOVE });
+						valueDispatch({
+							type: VALUE_TYPES.STC,
+							payload: e,
+						});
+					}}
 				/>
 			</div>
 		</div>
