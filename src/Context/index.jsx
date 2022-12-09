@@ -28,12 +28,10 @@ function ContextProvider({ children }) {
 	const reset = () => {
 		valueDispatch({ type: VALUE_TYPES.RESET });
 		errorDispatch({ type: ERROR_TYPES.TIPS_REMOVE });
-		reusltReset();
-	};
-
-	const reusltReset = () => {
 		resultDispatch({ type: RESULT_TYPES.RESET });
 	};
+
+
 
 	// useEffect
 
@@ -45,7 +43,7 @@ function ContextProvider({ children }) {
 		if (value.bill != '') {
 			resultDispatch({ type: RESULT_TYPES.TA, value });
 		} else {
-			reusltReset();
+			resultDispatch({ type: RESULT_TYPES.RESET });
 		}
 	}, [value]);
 
